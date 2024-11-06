@@ -22,7 +22,7 @@ limiter = Limiter(
 @api.route("/", methods=["GET"])
 @limiter.limit("3/second", override_defaults=False)
 def get():
-    content = database_manager.py.extension_get("*")
+    content = dbHandler.extension_get("*")
     return (content), 200
 
 @api.route("/add_extension", methods=["POST"])
