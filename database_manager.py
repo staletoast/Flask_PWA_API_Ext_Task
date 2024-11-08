@@ -4,10 +4,10 @@ from jsonschema import validate
 from flask import current_app
 
 
-def extension_get():
+def extension_get(lang):
     con = sql.connect(".database/data_source.db")
     cur = con.cursor()
-    cur.execute("SELECT * FROM extension")
+    cur.execute("SELECT * FROM extension WHERE language LIKE ?;", [lang])
     migrate_data = [
         dict(
             extID=row[0],
